@@ -1,0 +1,154 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/style_algorithms.css" type="text/css">
+  <link rel="stylesheet" href="css/prism.css" type="text/css">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+
+  <!-- logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+  <!-- font primary -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/b39d81b729.js" crossorigin="anonymous"></script>
+
+  <title>Cypher</title>
+
+</head>
+
+<body>
+
+  <div class="path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Polyalphabetic Cipher</li>
+      </ol>
+    </nav>
+
+  </div>
+
+
+  <div class="main container">
+    <div class="row">
+      <div class="box question col">
+        <h1><i class="icon fa-solid fa-hashtag fa-l"></i>
+          What is Polyalphabetic Cipher?</h1>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box ans col">
+        <p><i class="icon fa-solid fa-arrow-right fa-1x"></i>
+           Polyalphabetic (Vigenère Cipher) cipher is much more stronger technique to encrypt your message than any of the other susbtitution encryption techniques. Simply because, here we use the key value in an efficient manner.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box steps col">
+        <h2 class="box"><i class="icon fa-solid fa-hashtag fa-l"></i> Steps </h5>
+        <ol>
+          <li>Select any key.</li>
+          <li>Repeat the key to get same length as the plain message. Suppose, plain text = 'thisisaplaintext'and the chosen key word is 'welcome' ,then key will be='welcomewelcomewelcom' </li>
+          <li>Use this formula to encrypt: E[i]=(M[i]+k[i])%26,where 1 &lt i &lt length(plain message) and M[i],K[i] denotes the ascii value of the characters.</li>
+          <li>Similarly, the decryption happens using the formula: D[i]=(M[i]-K[i])%26</li>
+        </ol>
+      </div>
+    </div>
+   
+    <div class="box code_text">
+    <pre>
+      <code class="language-python">
+        <div>
+          key='deceptive'
+plainText='meet me after toga party'
+print('Plain message: ',plainText)
+encryptedText=''
+decryptedText=''
+key_idx=0
+
+for ch in plainText:
+    if (ch==' '):#ignore whitespaces
+        continue
+    ch=ch.lower()
+    ch_val=ord(ch)-97
+    key_val=ord(key[key_idx])-97
+    key_idx+=1
+    key_idx%=len(key)
+    en_val=(key_val+ch_val)%26
+    encryptedText+=chr(en_val+97)
+print('Encrypted Text: ',encryptedText)
+
+key_idx=0
+for ch in encryptedText:
+    ch_val=ord(ch)-97
+    key_val=ord(key[key_idx])-97
+    key_idx+=1
+    key_idx%=len(key)
+    de_val=(ch_val-key_val)%26
+    decryptedText+=chr(de_val+97)
+
+print("Decrypted Text: ",decryptedText)
+
+
+            
+            
+        </div>
+      </code>
+      </pre>
+      </div>
+
+
+
+    <div class="row">
+      <div class="box output col">
+        <iframe src="https://trinket.io/embed/python3/1a5691f1b6?outputOnly=true" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box try col">
+        <p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-primary m" data-bs-toggle="collapse" href="#collapseExample" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            Try yourself <i class="fa-solid fa-angle-down"></i>
+          </a>
+        </div>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+          
+            <iframe src="https://trinket.io/embed/python3/1a5691f1b6" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  <script src="js/prism.js"></script>
+
+</body>
+
+</html>

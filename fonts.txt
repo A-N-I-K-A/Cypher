@@ -1,0 +1,28 @@
+logo :
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+font-family: 'Press Start 2P', cursive;
+
+
+primary font:
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+font-family: 'Montserrat', sans-serif;
+
+
+
+
+bg-img credit:
+
+
+<a href="https://www.freepik.com/free-vector/global-data-security-personal-data-security-cyber-data-security-online-concept-illustration-internet-security-information-privacy-protection_12953630.htm#query=cyber%20security&position=12&from_view=search&track=sph">Image by jcomp</a> on Freepik
+<a href="https://www.vecteezy.com/free-vector/cyber-security">Cyber Security Vectors by Vecteezy</a>
+
+
+<iframe src="https://trinket.io/embed/python3/cd5d429c73" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>

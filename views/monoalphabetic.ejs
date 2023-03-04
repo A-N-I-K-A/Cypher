@@ -1,0 +1,171 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/style_algorithms.css" type="text/css">
+  <link rel="stylesheet" href="css/prism.css" type="text/css">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+
+  <!-- logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+  <!-- font primary -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/b39d81b729.js" crossorigin="anonymous"></script>
+
+  <title>Cypher</title>
+
+</head>
+
+<body>
+
+  <div class="path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Monoalphabetic Cipher</li>
+      </ol>
+    </nav>
+
+  </div>
+
+
+  <div class="main container">
+    <div class="row">
+      <div class="box question col">
+        <h1><i class="icon fa-solid fa-hashtag fa-l"></i>
+          What is Monoalphabetic Cipher?</h1>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box ans col">
+        <p><i class="icon fa-solid fa-arrow-right fa-1x"></i>
+            Monoalphabetic cipher is substitution cipher technique where each letter in the messgae is mapped to a key letter. This technique stronger than ceaser cipher as the key space is larger and there are 26! possibilites of key generation. Still, this technique can be cracked with help of double frequency distribution.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box steps col">
+        <h2 class="box"><i class="icon fa-solid fa-hashtag fa-l"></i> Steps </h5>
+          <ol>
+            <li>Firstly create a random permutation of the alphabets and map each alphabet letter to the the permutated letters.</li>
+            <li>For encoding: Take a message and replace every character of the message with their mapped values. </li>
+            <li>For decoding: Replace every character of the encrypted messgae and reversely map them to their original values.</li>
+          </ol>
+
+      </div>
+    </div>
+
+    <div class="box code_text">
+    <pre>
+      <code class="language-python">
+        <div>
+          import random
+          alpha=['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+          key={}
+          visited=[]
+          
+          
+          #map each alphabet to a random alphabet , this mapping will act as our key
+          for ch in alpha:
+              key_val = random.choice(alpha)
+              if key_val in visited:
+                  while key_val in visited:
+                      key_val=random.choice(alpha)
+              visited.append(key_val)
+              key[ch]=key_val
+          
+          
+          
+          #main
+          plainText='save yourself'
+          encryptedText=''
+          for ch in plainText:
+            if(ch==' '):
+                encryptedText+=" "
+            else:
+              encryptedText+=key[ch]
+          
+          
+          
+          decryptedText=''
+          for ch in encryptedText:
+              if ch==' ':
+                decryptedText+=" "
+              for index in key:
+                  if(key[index]==ch):
+                      decryptedText+=index
+          
+          
+          print("Plain Message: ",plainText)
+          print("Encrypted Message: ",encryptedText)
+          print("Decrypted Message: ",decryptedText)
+          
+          
+          
+          
+          
+          
+            
+            
+            
+            
+        </div>
+      </code>
+      </pre>
+      </div>
+
+
+
+    <div class="row">
+      <div class="box output col">
+        <iframe src="https://trinket.io/embed/python3/63d47f780e?outputOnly=true" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box try col">
+        <p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-primary m" data-bs-toggle="collapse" href="#collapseExample" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            Try yourself <i class="fa-solid fa-angle-down"></i>
+          </a>
+        </div>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <iframe src="https://trinket.io/embed/python3/63d47f780e" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  </div>
+  </div>
+
+  <script src="js/prism.js"></script>
+
+</body>
+
+</html>

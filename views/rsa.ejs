@@ -1,0 +1,262 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/style_algorithms.css" type="text/css">
+  <link rel="stylesheet" href="css/prism.css" type="text/css">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+
+  <!-- logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+  <!-- font primary -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/b39d81b729.js" crossorigin="anonymous"></script>
+
+  <title>Cypher</title>
+
+</head>
+
+<body>
+
+  <div class="path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a class="links" href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">RSA Algorithm</li>
+      </ol>
+    </nav>
+
+  </div>
+
+
+  <div class="main container">
+    <div class="row">
+      <div class="box question col">
+        <h1><i class="icon fa-solid fa-hashtag fa-l"></i>
+          What is RSA Algorithm?</h1>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box ans col">
+        <p><i class="icon fa-solid fa-arrow-right fa-1x"></i>
+          RSA (Rivest–Shamir–Adleman) is a public-key cryptosystem that is widely used for secure data transmission. It
+          is also one of the oldest. The acronym "RSA" comes from the surnames of Ron Rivest, Adi Shamir and Leonard
+          Adleman, who publicly described the algorithm in 1977. An equivalent system was developed secretly in 1973 at
+          Government Communications Headquarters (GCHQ) (the British signals intelligence agency) by the English
+          mathematician Clifford Cocks. That system was declassified in 1997.
+
+          The security of RSA relies on the practical difficulty of factoring the product of two large prime numbers,
+          the "factoring problem". Breaking RSA encryption is known as the RSA problem. Whether it is as difficult as
+          the factoring problem is an open question.There are no published methods to defeat the system if a large
+          enough key is used</p>
+      </div>
+    </div>
+
+
+    <div class="row">
+      <div class="box steps col">
+        <h2 class="box"><i class="icon fa-solid fa-hashtag fa-l"></i> Steps </h5>
+        <ol>
+          <li>Select any two large prime numbers as p and q.</li>
+          <li>Multiply the numbers to get n [n= p x q] where n is the modulus for encryption and decryption. </li>
+          <li>Choose a number less than n, such that n is relatively prime to (p-1)x(q-1). [1 &lt e &lt &Phi;(n), e is
+            prime to &Phi;(n)]</li>
+          <li>The public key is now &lt e,n &gt. To get the cipher text C from plain text,we use the formula C=
+            M<sup>e</sup> mod n where M means plain message.</li>
+          <li>If M is larger than n ,then M is treated as concatenation of messages and encrypted seperately.</li>
+          <li>To determine the private key, we use the following formula, de mod [(p-1) x (q-1)]=1 or d=(1+ ( k * &Phi;)
+            ) /e</li>
+          <li>The private key is now &lt d, e &gt. We use this key to decrypt the ciphertext.</li>
+          <li>The formula to decrypt the cipher is , M= C<sup>e</sup> mod n</li>
+        </ol>
+        <p class="box ctc"><i class="icon fa-solid fa-circle-info"></i> For detail of the keys,<a class="links" data-bs-toggle="modal"
+            data-bs-target="#staticBackdrop"> Click here </a>
+        </p>
+        </p>
+      </div>
+    </div>
+   
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-scrollable">
+        <div class=" modal-back modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="staticBackdropLabel">Keys in RSA Encryption</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            In a public-key cryptosystem, the encryption key is public and distinct from the decryption key, which is
+            kept secret (private). An RSA user creates and publishes a public key based on two large prime numbers,
+            along with an auxiliary value. The prime numbers are kept secret. Messages can be encrypted by anyone, via
+            the public key, but can only be decoded by someone who knows the prime numbers.
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Understod</button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="box code_text">
+    <pre>
+      <code class="language-python">
+        <div>
+          #we take very little primes for ease of understanding
+          import math
+          
+          def gcd(a,b):
+              tmp=0
+              while(1):
+                  tmp=a%b
+                  if(tmp==0):
+                      return b
+                  else:
+                      a=b
+                      b=tmp
+          
+          
+          p= 29# any two prime
+          q = 37
+          n=p*q
+          phi=(p-1)*(q-1) #totient function
+          e=2
+
+          #get a value of e such that e is integer , e is not prime, e is co prime with phi
+          while(e &lt phi):
+              if(gcd(e,phi)==1):
+                  break
+              else:
+                  e=e+1
+          
+          public_key=(e,n)
+          
+          #get a value of d
+          d=2 #trial value
+          while(1):
+              if(d*e % phi ==1):
+                  break
+              else:
+                  d+=1
+          private_key=(d,n)
+          # print(public_key)
+          # print(private_key)
+          
+          plainMessgae="WE ARE DISCOVERED, SAVE YOURSELF " #message to encrypt
+          M=[] #getting the int equivalent of the message characters
+          
+          for j in range(0,len(plainMessgae)):
+              temp=(ord(plainMessgae[j]))
+              M.append(temp)
+            
+          cipherText=[]
+          for i in M:
+              cipherCh=(i**e % n)
+              cipherText.append(cipherCh)
+            
+          decryptText=[]
+          for i in cipherText:
+                  decipherCh=(i**d %n)
+                  decryptText.append(chr(decipherCh))
+          
+          print('Plain Text: ',plainMessgae)
+          
+          print('Encrpyted Text: ')
+          for ch in cipherText:
+              print(ch,end='')
+          print(end='\n')
+          
+          print('Decrypted Text: ')
+          for ch in decryptText:
+              print(ch,end='')
+          print(end='\n')
+          
+          
+          
+          
+          
+          
+
+        </div>
+      </code>
+      </pre>
+      </div>
+
+
+
+    <div class="row">
+      <div class="box output col">
+        <iframe src="https://trinket.io/embed/python3/8beffbfa84?outputOnly=true" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box try col">
+        <p>
+        <div class="d-grid gap-2">
+          <a class="btn btn-outline-primary m" data-bs-toggle="collapse" href="#collapseExample" role="button"
+            aria-expanded="false" aria-controls="collapseExample">
+            Try yourself <i class="fa-solid fa-angle-down"></i>
+          </a>
+        </div>
+        </p>
+        <div class="collapse" id="collapseExample">
+          <div class="card card-body">
+            <iframe src="https://trinket.io/embed/python3/8beffbfa84" width="100%" height="356" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+    <div class="box nb col">
+      <p>As you see, setting p and q manually is not efficient at all and we need very large primes as p and q to make
+        our algorithm efficient. So,we will use library from python to generate the algorithm.</p>
+    </div>
+    </div>
+
+    <div class="box code_text">
+    <pre>
+    <code class="language-python">
+      #first install rsa package using command: pip install rsa
+      #run the following code in with any python complier
+      import rsa
+      publicKey,privateKey=rsa.newkeys(1024)
+      message="hello"
+      cipher=rsa.encrypt(message.encode(),publicKey)
+      print(cipher)
+      plainMessage=rsa.decrypt(cipher,privateKey)
+      print(plainMessage.decode())
+    </code>
+  </pre>
+  </div>
+
+  </div>
+  </div>
+  </div>
+
+  <script src="js/prism.js"></script>
+
+</body>
+
+</html>

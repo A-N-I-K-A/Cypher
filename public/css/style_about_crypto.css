@@ -1,0 +1,22 @@
+.main{
+    background-color: #080F4B;
+    padding: 15px; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+      
+}
+h1,h5{
+    font-weight: bold;
+    color: #283593;
+    
+}
+.image{
+    margin:0px 142px;
+}
+.about{
+    background-color:rgb(215 233 255);
+    border-radius: 3px;
+    padding: 20px;
+    margin: 0px 130px;
+    border-left: 5px solid  #283593;
+}

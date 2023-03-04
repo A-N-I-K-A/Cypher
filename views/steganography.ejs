@@ -1,0 +1,201 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="/css/style_algorithms.css" type="text/css">
+  <link rel="stylesheet" href="css/prism.css" type="text/css">
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+
+  <!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+    crossorigin="anonymous"></script>
+
+
+  <!-- logo -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+
+  <!-- font primary -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <script src="https://kit.fontawesome.com/b39d81b729.js" crossorigin="anonymous"></script>
+
+  <title>Cypher</title>
+
+</head>
+
+<body>
+
+  <div class="path">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Steganography</li>
+      </ol>
+    </nav>
+
+  </div>
+
+
+  <div class="main container">
+    <div class="row">
+      <div class="box question col">
+        <h1><i class="icon fa-solid fa-hashtag fa-l"></i>
+          What is Steganography?</h1>
+
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box ans col">
+        <p><i class="icon fa-solid fa-arrow-right fa-1x"></i>
+          Steganography is a technique of hiding valuable information which is text based in an image based file. The
+          encoding of this information in the image does very minor changes to the properties of the image which is non
+          detectable for human eye. The way in which we are going to implement Steganography is called <b>"LSB
+            Steganography"</b> which means that we are going to extract the pixel values of the image and make changes
+          in LSB position of red , blue and green values of the pixel according to our secret message. </p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="box steps col">
+        <h2 class="box"><i class="icon fa-solid fa-hashtag fa-l"></i> Steps </h5>
+          <ol>
+            <li>First take a seccret message, add a token or key and convert it to binary form.</li>
+            <li>Take any image but remember the image should be larger than the information size. We can always check
+              the image size by simply using image.shape property.</li>
+            <li>For Encoding: Take the pixel values of the image (r,g,b), convert them to binary and add the secret
+              message bits in LSB positon.</li>
+            <li>For Decoding: Take the same image again and extract the lsb bits of every pixel.</li>
+            <li>Now, we will add the characters of the message from our decoded messgae by taking 8 bits one by one.
+              Also check for the token at end of the message, if we already find the token then stop immidiately.</li>
+          </ol>
+
+      </div>
+    </div>
+
+
+    <div class="box code_text">
+      <pre>
+      <code class="language-python">
+        <div>
+          from matplotlib import pyplot as plt
+          import numpy as np
+          from PIL import Image
+
+          img=np.asarray(Image.open('/content/drive/MyDrive/Cypher_images/panda.jpg'))
+          print('Original Image')
+          plt.imshow(img)
+
+          msg='My name is Anika. My id is 1803004'
+          print('Message to Encode: ',msg)
+          #add ending token = [END]
+          msg+='[END]'
+
+          #converting each character of the message into ascii value
+          msg=msg.encode('ascii')
+
+
+          #converting message into binary
+          msg_b=''.join([format(i, "08b") for i in msg])
+
+          #keeping an interator for traversing through message
+          idx=0
+          done=0
+          for values in img:
+            for pixels in values:
+              #convert the r,g,b values into binary
+              r,g,b=[format(i, "08b") for i in pixels]
+
+              #adding the secret message bits into the lsb of r,g,b values
+              if(idx<lt><</lt>len(msg_b)):
+                pixels[0]=int(r[:-1]+msg_b[idx],2)
+                idx+=1
+              else:
+                done=1
+                break
+
+              if(idx<lt><</lt>len(msg_b)):
+                pixels[1]=int(g[:-1]+msg_b[idx],2)
+                idx+=1
+              else:
+                done=1
+                break
+
+              if(idx<lt><</lt>len(msg_b)):
+                pixels[2]=int(b[:-1]+msg_b[idx],2)
+                idx+=1
+              else:
+                done=1
+                break
+
+            if done==1:
+              break
+
+          print('Encoded Image')
+          plt.imshow(img)
+
+          decoded_msg=''
+
+          for values in img:
+            for pixels in values:
+              r,g,b=[format(i,"08b") for i in pixels]
+              decoded_msg+=r[-1]
+              decoded_msg+=g[-1]
+              decoded_msg+=b[-1]
+
+
+          msg_in_bytes=[]
+          for k in range(0,len(decoded_msg),8):
+            msg_in_bytes.append(decoded_msg[k:k+8])
+
+          actual_msg=""
+          for k in msg_in_bytes:
+            actual_msg+=chr(int(k,2))
+            if actual_msg[-5:]=="[END]":
+              break
+
+          print('Decoded message: ',actual_msg[:-5])
+  
+         
+        </div>
+      </code>
+      </pre>
+    </div>
+
+
+
+    <div class="row">
+      <div class="box output col-lg-6">
+        <img src="/img/stegno1.png" alt="">
+      </div>
+      <div class="box output col-lg-6">
+        <img src="/img/stegno3.png" alt="">
+      </div>
+      <div class="box output col-lg-6">
+        <img src="/img/stegno2.png" alt="">
+      </div>
+      <div class="box output col-lg-6">
+        <img src="/img/stegno4.png" alt="">
+      </div>
+    </div>
+
+
+  </div>
+  </div>
+  </div>
+
+  <script src="js/prism.js"></script>
+</body>
+
+</html>

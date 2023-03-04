@@ -1,0 +1,183 @@
+body{
+  
+    background-color: rgb(3, 7, 46)!important;
+    color:white !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.img-overlay
+{
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0;
+    right: 0;
+    opacity: 0.5;
+    background-position:bottom;
+    background-size: cover;
+    width: 100vw;
+    height:100vh;
+    z-index: -1;
+    
+    
+    
+}
+
+.main{
+    padding: 15px; 
+    font-family: 'Montserrat', sans-serif;
+    font-size: 18px;
+      
+}
+
+h1,h3{
+    font-weight: bold;
+    
+}
+
+
+@keyframes bounce { 
+    0%, 100% {transform:traslateY(0);}
+    50% {transform: translateY(-30px);} 
+    
+}
+@keyframes shake {
+  
+    0% { transform: rotate(0deg); }
+    25% { transform: rotate(5deg); }
+    50% { transform: rotate(0eg); }
+    75% { transform: rotate(-5deg); }
+    100% { transform: rotate(0deg); }
+
+}
+
+
+.reveal{
+    position: relative;
+    transform: translateY(150px);
+    opacity: 0;
+    transition: 2s all ease;
+  }
+.reveal.active{
+    transform: translateY(0);
+    opacity: 1;
+}
+
+
+.logo{
+    font-family: 'Press Start 2P', cursive;
+    font-size: 24px;
+    color:#283593 !important;
+}
+
+.navbar-brand{
+    margin-top:14px;    
+}
+.navbar-brand:hover{
+    animation: shake 0.3s;
+}
+#link,#its-menu{
+    color:white
+}
+
+#link:hover,#its-menu:hover{
+    color:grey;
+}
+
+#active{
+    color:grey;
+}
+.menu{
+    color: black !important ;
+}
+.modal-back{
+    background-color:rgb(73 74 78) !important
+}
+
+/* ................................... */
+
+
+#main-intro-text{ 
+    margin-top:90px;
+    padding: 30px;
+    font-size: 38px;
+   
+    
+}
+/* .............................. */
+
+.about-us{
+    border-left: 5px solid #283593;
+    margin-top: 100px;
+    background-color: rgba(3, 7, 32, 0.73);
+   
+     
+}
+
+#about-us-text{
+    padding: 10px 20px;  
+    margin:20px;
+}
+
+/* .............................. */
+
+.contents{
+    margin-top:100px;
+    border-left:5px solid rgb(80, 3, 80);
+}
+.contents-header{
+    margin:20px;
+}
+
+
+.card{
+    margin:20px;
+    color:black;
+    box-shadow: 10px 10px 10px #3c4d88;
+}
+.card-title{
+    color:rgb(80, 3, 80);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.last-card{
+    padding:90px 0px;
+    text-align: center;
+}
+
+.last-card-title:hover{
+    padding: 0px 10px;
+    
+}
+
+
+
+
+/* .......................... */
+
+.footer{
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-top:150px;
+    margin-left: 50px; 
+    color:grey;
+    font-size: 12px;
+
+
+}
+.photo-credit{
+    padding:20px;
+    width:50%;
+
+
+}
+.contact-us{
+    width:50%;
+    padding:20px;
+}
